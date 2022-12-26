@@ -1,8 +1,14 @@
+# -*- coding: utf-8 -*-
+
 import logging
-import os
-import telegram.constants
-from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
+
+import telegram, os
+from flask import Flask, request
+from telegram.ext import Dispatcher, MessageHandler, Filters
+
+
+
+#################
 import openai
 	
 openai.api_key = os.getenv("OPENAI_API_KEY") 
@@ -64,121 +70,62 @@ class ChatGPT:
         self.prompt.add_msg(text)
 
 
-class ChatGPT3TelegramBot:
-
-    def __init__(self):
-        self.chatgpt = ChatGPT()
-
-    # Help menu
-    async def help(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        await update.message.reply_text("/start - Start the bot\n/reset - Reset conversation\n/help - Help menu")
-
-    # Start the bot
-    async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if not self.is_allowed(update):
-            logging.info(f'User {update.message.from_user.name} is not allowed to start the bot')
-            return
-
-        logging.info('Bot started')
-        await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a Chat-GPT3 Bot, please talk to me!")
-
-    # Reset the conversation
-    async def reset(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if not self.is_allowed(update):
-            logging.info(f'User {update.message.from_user.name} is not allowed to reset the bot')
-            return
-
-        logging.info('Resetting the conversation...')
-#
-        await context.bot.send_message(chat_id=update.effective_chat.id, text="Done!")
-
-    # Refresh session
-    async def refresh(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if not self.is_allowed(update):
-            logging.info(f'User {update.message.from_user.name} is not allowed to refresh the session')
-            return
-
-        logging.info('Refreshing session...')
-#
-        await context.bot.send_message(chat_id=update.effective_chat.id, text="Done!")
 
 
 
-    # React to messages
-    async def prompt(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if not self.is_allowed(update):
-            logging.info(f'User {update.message.from_user.name} is not allowed to use the bot')
-            return
 
-        logging.info(f'New message received from user {update.message.from_user.name}')
-        await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=telegram.constants.ChatAction.TYPING)
-        
-        ai_reply_response = self.get_chatgpt_response(update.message.text)
-        
-        
-        await context.bot.send_message(
-            chat_id=update.effective_chat.id,
-            reply_to_message_id=update.message.message_id,
-            text=  ai_reply_response, #AI回答的內容
-            #text=response["message"], #原始程式
-            parse_mode=telegram.constants.ParseMode.MARKDOWN
-        )
+#####################
 
-    def get_chatgpt_response(self, user_message) -> dict:
-        try:
+telegram_bot_token = str(os.getenv("TELEGRAM_BOT_TOKEN"))
 
-            #user_message #接收人類問題的字詞變數
-            self.chatgpt.prompt.add_msg(f"HUMAN:{user_message}?\n")
-            response = self.chatgpt.get_response() #ChatGPT產生的回答
-            
-            print("AI回答內容2：")      
-            print(response) 
 
-            return response
-        
-        except ValueError as e:
-            logging.info(f'Error: {e}')
-            return {"message": "I'm having some trouble talking to you, please try again later."}
 
-    async def error_handler(self, update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
-        logging.debug(f'Exception while handling an update: {context.error}')
+# Load data from config.ini file
+#config = configparser.ConfigParser()
+#config.read('config.ini')
 
-    def is_allowed(self, update: Update) -> bool:
-        
-        allowed_chats= str(os.getenv("TELEGRAM_USER_ID"))
-        #""  #引號中填入允許通話的Telegram id #Please add your Telegram id between "".
-        
-        return str(update.message.from_user.id) in allowed_chats #self.config['allowed_chats']
+# Enable logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-    def run(self):
-        
-        telegram_bot_token = str(os.getenv("TELEGRAM_BOT_TOKEN")) 
-        
-        application = ApplicationBuilder().token(telegram_bot_token).build()
+# Initial Flask app
+app = Flask(__name__)
 
-        application.add_handler(CommandHandler('start', self.start))
-        application.add_handler(CommandHandler('reset', self.reset))
-        application.add_handler(CommandHandler('help', self.help))
-        application.add_handler(CommandHandler('refresh', self.refresh))
-        application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), self.prompt))
+# Initial bot by Telegram access token
+bot = telegram.Bot(token=telegram_bot_token)
 
-        application.add_error_handler(self.error_handler)
 
-        application.run_polling()
-#####################################################################
 
-def main():
-    logging.basicConfig(
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        level=logging.INFO
-    )
+@app.route('/callback', methods=['POST'])
+def webhook_handler():
+    """Set route /hook with POST method will trigger this method."""
+    if request.method == "POST":
+        update = telegram.Update.de_json(request.get_json(force=True), bot)
 
-    telegram_bot = ChatGPT3TelegramBot()
+        # Update dispatcher process that handler to process this message
+        dispatcher.process_update(update)
+    return 'ok'
+
+
+def reply_handler(bot, update):
+    """Reply message."""
+    #text = update.message.text
+    #update.message.reply_text(text)
+    chatgpt = ChatGPT()        
     
+    chatgpt.prompt.add_msg(update.message.text) #人類的問題
+    ai_reply_response = chatgpt.get_response() #ChatGPT產生的回答
+    
+    update.message.reply_text(ai_reply_response) #用AI的文字回傳
 
-    telegram_bot.run()
+# New a dispatcher for bot
+dispatcher = Dispatcher(bot, None)
 
+# Add handler for handling message, there are many kinds of message. For this handler, it particular handle text
+# message.
+dispatcher.add_handler(MessageHandler(Filters.text, reply_handler))
 
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    # Running server
+    app.run(debug=True)

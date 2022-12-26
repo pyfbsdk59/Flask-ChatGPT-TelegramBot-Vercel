@@ -1,4 +1,3 @@
-python-telegram-bot==20.0a6
-openai
-
-
+flask==1.0.2
+python-telegram-bot==10.1.0
+requests==2.18.4
