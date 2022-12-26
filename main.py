@@ -1,7 +1,5 @@
 import logging
 import os
-
-
 import telegram.constants
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
