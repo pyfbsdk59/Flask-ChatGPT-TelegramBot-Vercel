@@ -147,14 +147,14 @@ class ChatGPT3TelegramBot:
 
     def is_allowed(self, update: Update) -> bool:
         
-        allowed_chats= os.getenv("TELEGRAM_USER_ID") 
+        allowed_chats= str(os.getenv("TELEGRAM_USER_ID"))
         #""  #引號中填入允許通話的Telegram id #Please add your Telegram id between "".
         
         return str(update.message.from_user.id) in allowed_chats #self.config['allowed_chats']
 
     def run(self):
         
-        telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN") 
+        telegram_bot_token = str(os.getenv("TELEGRAM_BOT_TOKEN")) 
         
         application = ApplicationBuilder().token(telegram_bot_token).build()
 
