@@ -1,74 +1,36 @@
-# Python-ChatGPT-TelegramBot-Docker
-# 一個Python ChatGPT TelegramBot快速建置平台。
+# Flask-ChatGPT-TelegramBot-Docker
+# 一個Flask ChatGPT TelegramBot快速建置平台。
 
 
-### [English](https://github.com/pyfbsdk59/Python-ChatGPT-TelegramBot-Docker/blob/main/README_en.md)
-### [日本語](https://github.com/pyfbsdk59/Python-ChatGPT-TelegramBot-Docker/blob/main/README_jp.md)
+### [English](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README_en.md)
+### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README_jp.md)
 
 
-#### 1. 初次上傳專案到github，請多包涵。初版沒有設置另外的.env檔案和環境變數。之後會改正。
-
-
-#### 2. 本專案參考了以下前輩的方案改成製作，只針對剛學習Python或Docker的朋友來佈置TelegramBot在VPS上：
+#### 1. 本專案參考了以下前輩的方案改成製作，只針對剛學習Flask的朋友來佈置TelegramBot在Vercel上：
 
 https://github.com/howarder3/GPT-Linebot-python-flask-on-vercel<br><br>
-https://github.com/n3d1117/chatgpt-telegram-bot
+https://github.com/zaoldyeck/telegram-innovation-chatbot/tree/basic
 
-#### 3. 可使用任何VPS建制，例如DigitalOcean, Linode或是vultr。 用ssh連入主機，輸入帳密後，
+#### 2. 本專案因部屬在Vercel上，所以程式碼和Docker版本不同，也必須使用Flask和設定webhook。設定webhook請參考。
 
----
-# 環境建制（先建制了Makefile）
+https://zaoldyeck.medium.com/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%80%8E%E9%BA%BC%E6%89%93%E9%80%A0-telegram-bot-a7b539c3402a
 
-### Step 1: 輸入以下指令（建制docker和pyenv環境） 
-   
-    make do1
+#### 3. 必須在Vercel的Environment Variables設定兩個環境變數，分別是OPENAI_API_KEY和TELEGRAM_BOT_TOKEN。
 
+#### 4. 打開瀏覽器，輸入以下網址，設定webhook為部屬完Vercel的最後步驟，格式為：https://api.telegram.org/bot{$token}/setWebhook?url={$webhook_url}。故實際範例就像以下範例（非直接複製使用）：
 
-### Step 2: 輸入以下多行的指令。一個一個複製貼上輸入。（一共有7個指令）
-
-echo 'export LC_ALL=C.UTF-8' >> ~/.bashrc
-
-echo 'export LANG=C.UTF-8' >> ~/.bashrc
-
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-
-echo 'export PATH="$PYENV_ROOT/shims:$PATH"' >> ~/.bashrc
-
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-
-echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init -)"\nfi' >> ~/.bashrc
-
-exec $SHELL
+https://api.telegram.org/bot606248605:AAGv_TOJdNNMc_v3toHK_X6M-dev_1tG-JA/setWebhook?url=https://xxx.vercel.app/callback
 
 
-### Step 3: 輸入以下指令 （建制python環境且安裝docker-compose）
+#### 5. 成功後會顯示以下文字：
 
-     make do2
-
-       
-### Step 4: 輸入 cd ~ ，到主目錄，輸入以下指令下載本專案。
-
-    git clone https://github.com/pyfbsdk59/Python-ChatGPT-TelegramBot-Docker.git
-   
-
-### Step 5: 輸入以下指令進入本專案目錄（已建制Makefile）。
-
-    cd Python-ChatGPT-TelegramBot-Docker
-
-
-### Step 6a: 輸入以下指令，開始建制本專案的容器，完成後會有1個container（記得先用nano指令修改main.py的OEPNAI api key的部分，還有加入自己的TelegramBot token和自己的TG帳號的id。）
-
-    make dcup
-    
-### Step 6b: 也可以不用設置Docker就直接執行，請輸入以下指令，但要先有Python環境。
-
-    python main.py &
-
+{
+  ok: true,
+  result: true,
+  description: "Webhook was set"
+}
 ------
 ### 創建Telegram機器人和取得token，請參考： 
 https://ithelp.ithome.com.tw/articles/10245264<br><br>
 https://tcsky.cc/tips-01-telegram-chatbot/
 
-### 取得自己的Telegram user id，加入機器人，取得。請參考：
-https://telegram.me/getidsbot<br><br>
-https://blog.csdn.net/qq_40394269/article/details/124832889

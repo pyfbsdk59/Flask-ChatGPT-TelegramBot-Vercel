@@ -1,3 +1,14 @@
-flask==1.0.2
+certifi
+chardet
+click
+flask
+future
+idna
+itsdangerous
+jinja2
+markupsafe
 python-telegram-bot==10.1.0
-requests==2.18.4
+requests
+urllib3
+werkzeug
+openai
