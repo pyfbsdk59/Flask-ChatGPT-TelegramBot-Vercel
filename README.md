@@ -2,8 +2,8 @@
 # 一個Flask ChatGPT TelegramBot快速建置於平台Vercel。
 
 
-### [English](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README_en.md)
-### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README_jp.md)
+### [English](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_en.md)
+### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_jp.md)
 
 #### 0. 程式猿影音教學參考。
 

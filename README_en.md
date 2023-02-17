@@ -2,8 +2,8 @@
 # A Flask ChatGPT TelegramBot quickly built on the platform Vercel.
 
 
-### [繁體中文](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README.md)
-### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README_jp.md)
+### [繁體中文](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README.md)
+### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_jp.md)
 
 
 #### 1. This project refers to the following predecessors' projects, and it is only for friends who have just learned Flask to deploy TelegramBot on Vercel:
