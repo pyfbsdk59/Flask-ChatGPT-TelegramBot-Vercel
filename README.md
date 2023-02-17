@@ -5,6 +5,10 @@
 ### [English](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README_en.md)
 ### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Docker/blob/main/README_jp.md)
 
+#### 0. 程式猿影音教學參考。
+
+https://www.youtube.com/watch?v=eKKEa6NhCd0
+
 
 #### 1. 本專案參考了以下前輩的方案改成製作，只針對剛學習Flask的朋友來佈置TelegramBot在Vercel上：
 
