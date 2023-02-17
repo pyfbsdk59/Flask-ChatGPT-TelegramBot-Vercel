@@ -9,7 +9,7 @@
 
 
 
-#### 0. 程式猿影音教學參考。
+#### 0. 程式猿影音教學參考。請支持且訂閱加按讚感謝他的辛勞。
 
 https://www.youtube.com/watch?v=eKKEa6NhCd0
 
