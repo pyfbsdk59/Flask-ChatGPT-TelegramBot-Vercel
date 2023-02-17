@@ -27,13 +27,13 @@ https://zaoldyeck.medium.com/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%80
 #### 3. 註冊Vercel帳號後，import已經fork過來的本專案。
 
 <div align="center">
-  <img src="demo/demo1.jpg" width="300"/>
+  <img src="demo/demo1.png" width="300"/>
 </div>
 
 #### 4. 必須在Vercel的Environment Variables設定兩個環境變數，分別是OPENAI_API_KEY和TELEGRAM_BOT_TOKEN。順便記下Vercel給的網址，可以自己縮短一些。
 
 <div align="center">
-  <img src="demo/demo2.jpg" width="300"/>
+  <img src="demo/demo2.png" width="300"/>
 </div>
 
 #### 5. 打開瀏覽器，輸入以下網址，設定webhook為部屬完Vercel的最後步驟，格式為：https://api.telegram.org/bot{$token}/setWebhook?url={$webhook_url}。
