@@ -1,14 +1,13 @@
 # Flask-ChatGPT-TelegramBot-Vercel
 # 一個Flask ChatGPT TelegramBot快速建置於平台Vercel。
 
+## [Render版本部屬](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Render)
 
 ### [English](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_en.md)
 ### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_jp.md)
 
 
-## [Render版本部屬](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Render)
 
-部屬方式類似Vercel，只有些微不同。
 
 #### 0. 程式猿影音教學參考。
 
