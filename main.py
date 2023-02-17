@@ -14,12 +14,13 @@ import openai
 openai.api_key = os.getenv("OPENAI_API_KEY") 
 
 
-chat_language = os.getenv("INIT_LANGUAGE", default = "zh")
+chat_language = os.getenv("INIT_LANGUAGE", default = "zh") #amend here to change your preset language
 	
 MSG_LIST_LIMIT = int(os.getenv("MSG_LIST_LIMIT", default = 20))
 LANGUAGE_TABLE = {
 	  "zh": "哈囉！",
-	  "en": "Hello!"
+	  "en": "Hello!",
+      "jp": "こんにちは"
 	}
 
 
@@ -46,7 +47,7 @@ class ChatGPT:
         self.temperature = float(os.getenv("OPENAI_TEMPERATURE", default = 0))
         self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 0))
         self.presence_penalty = float(os.getenv("OPENAI_PRESENCE_PENALTY", default = 0.6))
-        self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 240))
+        self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 240)) #You can change here to decide the characer number AI gave you.
 	
     def get_response(self):
         response = openai.Completion.create(
@@ -58,10 +59,10 @@ class ChatGPT:
 	            max_tokens=self.max_tokens
                 )
         
-        print("AI回答內容：")        
+        print("AI回答內容(The direct answer that AI gave you)：")        
         print(response['choices'][0]['text'].strip())
 
-        print("AI原始回覆資料內容：")      
+        print("AI原始回覆資料內容(The original answer that AI gave you)：")      
         print(response)
         
         return response['choices'][0]['text'].strip()
@@ -114,10 +115,10 @@ def reply_handler(bot, update):
     #update.message.reply_text(text)
     chatgpt = ChatGPT()        
     
-    chatgpt.prompt.add_msg(update.message.text) #人類的問題
-    ai_reply_response = chatgpt.get_response() #ChatGPT產生的回答
+    chatgpt.prompt.add_msg(update.message.text) #人類的問題 the question humans asked
+    ai_reply_response = chatgpt.get_response() #ChatGPT產生的回答 the answers that ChatGPT gave
     
-    update.message.reply_text(ai_reply_response) #用AI的文字回傳
+    update.message.reply_text(ai_reply_response) #用AI的文字回傳 reply the text that AI made
 
 # New a dispatcher for bot
 dispatcher = Dispatcher(bot, None)
