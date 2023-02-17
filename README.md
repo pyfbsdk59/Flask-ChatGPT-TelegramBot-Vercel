@@ -5,7 +5,12 @@
 ### [English](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_en.md)
 ### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_jp.md)
 
-#### 0. 程式猿影音教學參考。
+
+#### 0a. [其他平台版本 Render](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Render)
+
+部屬方式類似Vercel，只有些微不同。
+
+#### 0b. 程式猿影音教學參考。
 
 https://www.youtube.com/watch?v=eKKEa6NhCd0
 
