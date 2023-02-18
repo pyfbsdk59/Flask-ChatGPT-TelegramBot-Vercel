@@ -13,6 +13,17 @@
   <img src="demo/link2.png" width="700"/>
 </div>
 
+## [TelegramBot Golang Render版本部屬](https://github.com/pyfbsdk59/Golang-ChatGPT-TelegramBot-Render)
+
+<div align="center">
+  <img src="demo/link3.png" width="700"/>
+</div>
+
+## [LineBot Golang Render版本部屬](https://github.com/pyfbsdk59/Golang-ChatGPT-linebot-Render)
+
+<div align="center">
+  <img src="demo/link4.png" width="700"/>
+</div>
 
 ### [English](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_en.md)
 ### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_jp.md)
