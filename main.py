@@ -48,15 +48,24 @@ class ChatGPT:
         self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 0))
         self.presence_penalty = float(os.getenv("OPENAI_PRESENCE_PENALTY", default = 0.6))
         self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 240)) #You can change here to decide the characer number AI gave you.
-	
+
+# Note: you need to be using OpenAI Python v0.27.0 for the code below to work
+
+
     def get_response(self):
-        response = openai.Completion.create(
+        response = openai.ChatCompletion.create(
 	            model=self.model,
-	            prompt=self.prompt.generate_prompt(),
-	            temperature=self.temperature,
-	            frequency_penalty=self.frequency_penalty,
-	            presence_penalty=self.presence_penalty,
-	            max_tokens=self.max_tokens
+                messages=[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Who won the world series in 2020?"},
+        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+        {"role": "user", "content": "Where was it played?"}
+    ]
+	            #prompt=self.prompt.generate_prompt(),
+	            #temperature=self.temperature,
+	            #frequency_penalty=self.frequency_penalty,
+	            #presence_penalty=self.presence_penalty,
+	            #max_tokens=self.max_tokens
                 )
         
         print("AI回答內容(The direct answer that AI gave you)：")        
