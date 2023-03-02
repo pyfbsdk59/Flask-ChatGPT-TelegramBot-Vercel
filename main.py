@@ -56,7 +56,7 @@ class ChatGPT:
         response = openai.ChatCompletion.create(
 	            model=self.model,
                 messages=[
-                {'role': 'assistant', 'content': 'Translate the following English text to French: "{text2}"'}
+                {'role': 'assistant', 'content': 'Answer the following question: "{text2}"'}
 ]
 	            #prompt=self.prompt.generate_prompt(),
 	            #temperature=self.temperature,
