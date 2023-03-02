@@ -6,6 +6,10 @@
 ### [日本語](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Vercel/blob/main/README_jp.md)
 
 
+#### 0. Migrating to GPT3.5 model...
+
+
+
 #### 1. This project refers to the following predecessors' projects, and it is only for friends who have just learned Flask to deploy TelegramBot on Vercel:
 
 https://github.com/howarder3/GPT-Linebot-python-flask-on-vercel<br><br>

@@ -52,15 +52,12 @@ class ChatGPT:
 # Note: you need to be using OpenAI Python v0.27.0 for the code below to work
 
 
-    def get_response(self):
+    def get_response(self, text2):
         response = openai.ChatCompletion.create(
 	            model=self.model,
                 messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Who won the world series in 2020?"},
-        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-        {"role": "user", "content": "Where was it played?"}
-    ]
+                {'role': 'assistant', 'content': 'Translate the following English text to French: "{text2}"'}
+]
 	            #prompt=self.prompt.generate_prompt(),
 	            #temperature=self.temperature,
 	            #frequency_penalty=self.frequency_penalty,
@@ -125,7 +122,7 @@ def reply_handler(bot, update):
     chatgpt = ChatGPT()        
     
     chatgpt.prompt.add_msg(update.message.text) #人類的問題 the question humans asked
-    ai_reply_response = chatgpt.get_response() #ChatGPT產生的回答 the answers that ChatGPT gave
+    ai_reply_response = chatgpt.get_response(update.message.text) #ChatGPT產生的回答 the answers that ChatGPT gave
     
     update.message.reply_text(ai_reply_response) #用AI的文字回傳 reply the text that AI made
 
