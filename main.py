@@ -43,7 +43,7 @@ class Prompts:
 class ChatGPT:  
     def __init__(self):
         self.prompt = Prompts()
-        self.model = os.getenv("OPENAI_MODEL", default = "text-davinci-003")
+        self.model = os.getenv("OPENAI_MODEL", default = "gpt-3.5-turbo")
         self.temperature = float(os.getenv("OPENAI_TEMPERATURE", default = 0))
         self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 0))
         self.presence_penalty = float(os.getenv("OPENAI_PRESENCE_PENALTY", default = 0.6))
@@ -60,12 +60,12 @@ class ChatGPT:
                 )
         
         print("AI回答內容(The direct answer that AI gave you)：")        
-        print(response['choices'][0]['text'].strip())
+        print(response['choices'][0]['message']['content'].strip())
 
         print("AI原始回覆資料內容(The original answer that AI gave you)：")      
         print(response)
         
-        return response['choices'][0]['text'].strip()
+        return response['choices'][0]['message']['content'].strip()
 	
     def add_msg(self, text):
         self.prompt.add_msg(text)
