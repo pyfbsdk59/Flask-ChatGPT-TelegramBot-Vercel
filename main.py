@@ -52,14 +52,14 @@ class ChatGPT:
 # Note: you need to be using OpenAI Python v0.27.0 for the code below to work
 
 
-    def get_response(self, text):
+    def get_response(self, text2):
         response = openai.ChatCompletion.create(
 	            model=self.model,
                 messages=[
-  {'role': 'system', 'content': 'You are a helpful assistant that translates English to Japanese.'},
-  {'role': 'user', 'content': 'Translate the following English text to Japanese: "{text}"'}
+  {'role': 'system', 'content': 'You are a helpful assistant that translates English to French.'},
+  {'role': 'user', 'content': 'Translate the following English text to French: "{text2}"'}
 ]
-	            #prompt=self.prompt.generate_prompt(),
+	            prompt=self.prompt.generate_prompt(),
 	            #temperature=self.temperature,
 	            #frequency_penalty=self.frequency_penalty,
 	            #presence_penalty=self.presence_penalty,
