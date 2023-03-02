@@ -56,7 +56,7 @@ class ChatGPT:
         response = openai.ChatCompletion.create(
 	            model=self.model,
                 messages=[
-                {'role': 'user', 'content': 'Answer the following question accordingly: "{q2}"'}
+                {'role': 'user', 'content': 'Answer the following question accordingly: q2'}
 ]
 	            #prompt=self.prompt.generate_prompt(),
 	            #temperature=self.temperature,
