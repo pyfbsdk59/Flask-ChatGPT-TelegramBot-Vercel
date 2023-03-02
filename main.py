@@ -52,11 +52,11 @@ class ChatGPT:
 # Note: you need to be using OpenAI Python v0.27.0 for the code below to work
 
 
-    def get_response(self, text2):
+    def get_response(self, q2):
         response = openai.ChatCompletion.create(
 	            model=self.model,
                 messages=[
-                {'role': 'assistant', 'content': 'Answer the following question: "{text2}"'}
+                {'role': 'user', 'content': 'Answer the following question accordingly: "{q2}"'}
 ]
 	            #prompt=self.prompt.generate_prompt(),
 	            #temperature=self.temperature,
