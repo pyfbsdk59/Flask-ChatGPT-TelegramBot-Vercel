@@ -56,7 +56,8 @@ class ChatGPT:
         response = openai.ChatCompletion.create(
 	            model=self.model,
                 messages=[
-                {'role': 'user', 'content': 'Translate the following English text to Chinese: "{text}"'}
+  {'role': 'system', 'content': 'You are a helpful assistant that translates English to Japanese.'},
+  {'role': 'user', 'content': 'Translate the following English text to Japanese: "{text}"'}
 ]
 	            #prompt=self.prompt.generate_prompt(),
 	            #temperature=self.temperature,
@@ -68,8 +69,8 @@ class ChatGPT:
         print("AI回答內容(The direct answer that AI gave you)：")        
         print(response['choices'][0]['message']['content'].strip())
 
-        print("AI原始回覆資料內容(The original answer that AI gave you)：")      
-        print(response)
+        #print("AI原始回覆資料內容(The original answer that AI gave you)：")      
+        #print(response)
         
         return response['choices'][0]['message']['content'].strip()
 	
