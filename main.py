@@ -43,36 +43,29 @@ class Prompts:
 class ChatGPT:  
     def __init__(self):
         self.prompt = Prompts()
-        self.model = os.getenv("OPENAI_MODEL", default = "gpt-3.5-turbo")
+        self.model = os.getenv("OPENAI_MODEL", default = "text-davinci-003")
         self.temperature = float(os.getenv("OPENAI_TEMPERATURE", default = 0))
         self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 0))
         self.presence_penalty = float(os.getenv("OPENAI_PRESENCE_PENALTY", default = 0.6))
-        self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 240)) #You can change here to decide the characer number AI gave you.
-
-# Note: you need to be using OpenAI Python v0.27.0 for the code below to work
-
-
-    def get_response(self, text2):
-        response = openai.ChatCompletion.create(
+        self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 240))
+	
+    def get_response(self):
+        response = openai.Completion.create(
 	            model=self.model,
-                messages=[
-  {'role': 'system', 'content': 'You are a helpful assistant that translates English to French.'},
-  {'role': 'user', 'content': 'Translate the following English text to French: "{text2}"'}
-]
-	            #prompt=self.prompt.generate_prompt(),
-	            #temperature=self.temperature,
-	            #frequency_penalty=self.frequency_penalty,
-	            #presence_penalty=self.presence_penalty,
-	            #max_tokens=self.max_tokens
+	            prompt=self.prompt.generate_prompt(),
+	            temperature=self.temperature,
+	            frequency_penalty=self.frequency_penalty,
+	            presence_penalty=self.presence_penalty,
+	            max_tokens=self.max_tokens
                 )
         
-        print("AI回答內容(The direct answer that AI gave you)：")        
-        print(response['choices'][0]['message']['content'].strip())
+        print("AI回答內容：")        
+        print(response['choices'][0]['text'].strip())
 
-        #print("AI原始回覆資料內容(The original answer that AI gave you)：")      
-        #print(response)
+        print("AI原始回覆資料內容：")      
+        print(response)
         
-        return response['choices'][0]['message']['content'].strip()
+        return response['choices'][0]['text'].strip()
 	
     def add_msg(self, text):
         self.prompt.add_msg(text)
@@ -123,7 +116,7 @@ def reply_handler(bot, update):
     chatgpt = ChatGPT()        
     
     chatgpt.prompt.add_msg(update.message.text) #人類的問題 the question humans asked
-    ai_reply_response = chatgpt.get_response(update.message.text) #ChatGPT產生的回答 the answers that ChatGPT gave
+    ai_reply_response = chatgpt.get_response() #ChatGPT產生的回答 the answers that ChatGPT gave
     
     update.message.reply_text(ai_reply_response) #用AI的文字回傳 reply the text that AI made
 
