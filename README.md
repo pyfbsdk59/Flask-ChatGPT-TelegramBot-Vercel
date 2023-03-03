@@ -1,19 +1,27 @@
 # Flask-ChatGPT-TelegramBot-Vercel
 # 一個Flask ChatGPT TelegramBot快速建置於平台Vercel。
 
-## [TelegramBot Render版本部屬](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Render)
+
+## [TelegramBot Vercel GPT3.5 turbo/ChatGPT版本部屬](https://github.com/pyfbsdk59/Flask-official-ChatGPT-TelegramBot-Vercel)
+
+<div align="center">
+  <img src="demo/demo_351.png" width="500"/>
+</div>
+
+
+## [TelegramBot Render GTP3版本部屬](https://github.com/pyfbsdk59/Flask-ChatGPT-TelegramBot-Render)
 
 <div align="center">
   <img src="demo/link.png" width="700"/>
 </div>
 
-## [LineBot Django Vercel版本部屬](https://github.com/pyfbsdk59/Django-ChatGPT-linebot-Vercel)
+## [LineBot Django Vercel GTP3版本部屬](https://github.com/pyfbsdk59/Django-ChatGPT-linebot-Vercel)
 
 <div align="center">
   <img src="demo/link2.png" width="700"/>
 </div>
 
-## [TelegramBot Golang Render版本部屬](https://github.com/pyfbsdk59/Golang-ChatGPT-TelegramBot-Render)
+## [TelegramBot Golang Render GTP3版本部屬](https://github.com/pyfbsdk59/Golang-ChatGPT-TelegramBot-Render)
 
 <div align="center">
   <img src="demo/link3.png" width="700"/>
@@ -23,7 +31,7 @@
   <img src="demo/link3a.png" width="600"/>
 </div>
 
-## [LineBot Golang Render版本部屬](https://github.com/pyfbsdk59/Golang-ChatGPT-linebot-Render)
+## [LineBot Golang Render GTP3版本部屬](https://github.com/pyfbsdk59/Golang-ChatGPT-linebot-Render)
 
 <div align="center">
   <img src="demo/link4.png" width="700"/>
