@@ -43,7 +43,7 @@ class Prompts:
 class ChatGPT:  
     def __init__(self):
         self.prompt = Prompts()
-        self.model = os.getenv("OPENAI_MODEL", default = "text-davinci-003")
+        self.model = os.getenv("OPENAI_MODEL", default = "gpt-4")
         self.temperature = float(os.getenv("OPENAI_TEMPERATURE", default = 0))
         self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 0))
         self.presence_penalty = float(os.getenv("OPENAI_PRESENCE_PENALTY", default = 0.6))
